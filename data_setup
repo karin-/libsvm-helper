@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cat input.txt | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>:' > randomized.txt
+head -n 1252 randomized.txt > train.txt
+tail -n 139 randomized.txt > test.txt
+./svm-train train.txt
+./svm-predict test.txt train.txt.model results
