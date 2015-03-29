@@ -1,0 +1,35 @@
+K means alone creates a super-cluster containing ~98% of the points, yielding
+50% accuracy; this is even worse than just guessing that every point is a health
+firm (as there are somewhat more health than tech firms in our dataset).
+
+It makes sense, given that there are ~17,000 words in our bag-of-words vectors,
+to do dimension reduction. Our bag-of-words vectors are unweighted in the
+sense that if "the" occurs three times, it gets as much weight as does
+the word "health" occuring three times. This does not help K-means differentiate
+as we would like it to. The vectors are also super-sparse, as the descriptions
+are far shorter than 17,000 words. So dimension reduction should allow us
+to identify, in some sense, the "important" words, and focus on the dimensions
+of the data that matter. One can see from the Python output that just 2 or 3
+principle components explain ~97% of the variance, allowing us to actually
+visualize our 17,000-dimension data set without sacrificing much information.
+
+That said, even after running PCA on the data, K-means does no better. But now
+we can actually see why: The plot of 2-component PCA shows that there is 1
+supercluster containing virtually all of the data, and a few more small clusters
+of outliers lying far from the supercluster. 2-means separates that data into
+the supercluster and the outlying clusters, presumably. It thus assigns a
+single label to the supercluster, which contains almost all the points, and so
+we end up with 50% accuracy.
+
+If we were to consider only points that fall within the supercluster, we end up
+with a plot (shown) where there is not true separation between types of
+companies, but where we can certainly see a trend: the "red" companies tend
+to have larger y-values than the blue companies (i.e., we should be able to find
+some separation and do better than 50% accuracy within this supercluster). We
+leave this as an exercise for the reader. Just kidding, but it seems more
+productive to recognize that supervised learning (where SVM gave us >97%
+accuracy) is the more useful and applicable method. Another option is to
+do some massaging of the data. We could remove useless words like articles,
+weight certain words more, or even clump similar words together (e.g.
+"red", "orange", and "yellow" into "warm-colors") and then proceed with
+clustering.
