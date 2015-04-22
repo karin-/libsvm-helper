@@ -34,11 +34,9 @@ print "Using the built-in fit_predict function, our accuracy is " + str(np.mean(
 colors2 = np.zeros((transformedData.shape[0], 3))
 for row in range(colors2.shape[0]):
     if guess[row]:
-        # tech is red
-        colors2[row,:] = [1, 0, 0]
-    else:
-        # health is blue
         colors2[row,:] = [0, 0, 1]
+    else:
+        colors2[row,:] = [1, 0, 0]
 
 mpl.scatter(transformedData[:,0], transformedData[:,1], c = colors2)
 mpl.show()
