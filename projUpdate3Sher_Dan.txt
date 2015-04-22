@@ -1,0 +1,31 @@
+Nonnegative Matrix Factorization with Clustering  -Sheridan & Daniel
+
+    We used SciKit Learn's NMF algorithm to develop 2 to 10 topics for the stock
+wordcount data, and then used k-means to cluster the reduced-dimension data.
+Note that, before doing any data mining, we applied TF-IDF (term frequency-
+inverse document frequency)  weighting to the bag-of-words vectors, a standard
+procedure that  reduces the noise and outliers in bag-of-words vectors.
+
+    The graphs attached show the data after NMF reduction into 2 dimensions. We
+see immediately that, as expected, much of the data falls onto the 2 axes,
+meaning that most companies' summaries derive entirely from 1 topic or the other
+(see the previous section for the words that define each topic). We also see
+that the tech companies almost entirely fall close to or on the "tech" topic
+axis, unsurprisingly, as many of the words in the "health" topic are highly
+specific to the healthcare industry (biomedical, pharaceutical, etc.). The
+health companies, on the other hand, are much more spread out, and numerous
+health company summaries derive much from the tech topic. This makes sense as
+the words in the tech topic (software, data, management, etc.) are all fairly
+commonly used in any industry.
+
+    We then applied k-means clustering to the dimension-reduced data, for an
+accuracy of roughly 75% for all different numbers of topics. Numerous health
+companies were classified incorrectly as software, because, as noted above, they
+derive much from the tech topic. This is still a significant improvement on the
+naive clustering from the  previous update, which had an accuracy of only 50%
+(i.e. no accuracy at all!). The topic modeling made the data much more separable
+and  sensible, so even the unsupervised k-means had some success here. For the
+final project, we anticipate combining topic modeling (NMF) with classification
+(SVM) for ultra-sensitive analysis.
+
+	
