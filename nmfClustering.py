@@ -4,7 +4,7 @@ import matplotlib.pyplot as mpl
 
 transformedData = nmf.fit_transform(tfidf)
 
-# colorize that shit
+# colorize that data!
 colors = np.zeros((transformedData.shape[0], 3))
 for row in range(colors.shape[0]):
     if row < len(techList):
@@ -15,12 +15,12 @@ for row in range(colors.shape[0]):
         colors[row,:] = [0, 0, 1]
 
 
-# plot that shit
+# plot that data!
 mpl.scatter(transformedData[:,0], transformedData[:,1], c = colors)
 mpl.show()
 
 
-# cluster that shit
+# cluster that data!
 from sklearn.cluster import KMeans
 km = KMeans(2)
 correct = np.repeat([0,1], [len(techList), len(healthList)])
@@ -30,7 +30,7 @@ print "Using the built-in fit_predict function, our accuracy is " + str(np.mean(
 
 
 
-# colorize that shit
+# colorize that data!
 colors2 = np.zeros((transformedData.shape[0], 3))
 for row in range(colors2.shape[0]):
     if guess[row]:
